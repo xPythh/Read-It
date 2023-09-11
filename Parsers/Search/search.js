@@ -1,5 +1,7 @@
 const { parse } = require('node-html-parser');
 
+const Helpers = require("../../Helpers");
+
 module.exports = function (text)
 {
 	var output = [];
@@ -22,22 +24,8 @@ module.exports = function (text)
 			name: name.innerText,
 			members: parseInt(members),
 			online: parseInt(online),
-			description: (description) ? cleanDescription(description.innerText) : null
+			description: (description) ? Helpers.CleanText(description.innerText) : null
 		});
 	}
 	return output;
-}
-
-
-function cleanDescription(input) 
-{
-	input = input.split("&lt;").join('<')
-                 .split("&gt;").join('>')
-                 .split("&amp;").join('&')
-                 .split("&quot;").join('"')
-                 .split("&#39;").join("'");
-
-    input = input.split(/\n/).join(""); // Remove the \n from the innerText
-    input = input.split(/  /).join(""); // Remove the extra spaces caused by the newlines
-    return input;
 }

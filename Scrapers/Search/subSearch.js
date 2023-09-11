@@ -12,15 +12,17 @@ async function execute(query, url)
 
 	var entryIndex = 0;
 	var entryLimit = (query.limit) ? parseInt(query.limit)*25 : 50*25;
-
+	
 	while (entryIndex < entryLimit)
 	{
 		var searchData = {
 			q: query.q,
 			type: "link",
 			sort: query.sort,
-			postsCursor: Buffer.from((entryIndex).toString()).toString('base64')
+			postsCursor: Buffer.from((entryIndex).toString()).toString('base64'),
+			t: query.t
 		}
+
 		const searchString = '?' + new URLSearchParams(searchData).toString();
 		var request = await fetch(`https://www.reddit.com/svc/shreddit/r/${subReddit}/search/${searchString}`);
 		var requestHTML = await request.text();
@@ -37,8 +39,9 @@ module.exports = {
 	defaultFields: 
 	{
 		q: "Example",
-		sort: "hot",
-		limit: 5
+		sort: ["relevance", "hot", "top", "new", "comments"],
+		limit: 5,
+		t: ["all", "hour", "day", "week", "month", "year"]
 	},
 	execute: execute 
 }

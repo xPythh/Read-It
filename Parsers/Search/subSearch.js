@@ -1,5 +1,7 @@
 const { parse } = require('node-html-parser');
 
+const Helpers = require("../../Helpers");
+
 module.exports = function (text)
 {
 	var output = [];
@@ -20,7 +22,7 @@ module.exports = function (text)
 
 		output.push({
 			time: time,
-			title: cleanTitle(title.innerText),
+			title: Helpers.ClearText(title.innerText),
 			url: url,
 			image: (image) ? image.getAttribute("src") : null,
 			upvotes: parseInt(upvotes),
@@ -28,12 +30,4 @@ module.exports = function (text)
 		});
 	}
 	return output;
-}
-
-
-function cleanTitle(input) 
-{
-    input = input.split(/\n/).join(""); // Remove the \n from the innerText
-    input = input.split(/  /).join(""); // Remove the extra spaces caused by the newlines
-    return input;
 }
