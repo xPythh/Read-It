@@ -8,9 +8,9 @@ It will obviously not has as much features, but it will be better than nothing.
 
 TODO:
 - 📝 Add support for type link & user (Only does SR) on /search and /r/*/search
-- 📝 Make the two different constructors: ExpressJS API & Method Calling Directly
+- 🚧 Make the two different constructors: ✅ ExpressJS API & ❌ Method Calling Directly
 - 📝 Add a delay between each request to avoid any rate-limit
-- 📝 Add checks to the req.query's to make sure they are properly formed
+- 🚧 Add checks to the req.query's to make sure they are properly formed
 
 
 

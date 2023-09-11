@@ -1,4 +1,3 @@
-const fs = require("fs");
 const { parse } = require('node-html-parser');
 
 module.exports = function (text)
@@ -15,7 +14,7 @@ module.exports = function (text)
 		var time = post.querySelector("faceplate-timeago").getAttribute("ts");
 		var title = post.querySelector("[data-testid=post-title-text]");
 		var url = post.querySelector("[data-testid=post-title]").getAttribute("href");
-		var image = post.querySelector("faceplate-img").getAttribute("src");
+		var image = post.getElementsByTagName("faceplate-img")[3];
 		var upvotes = post.querySelectorAll("faceplate-number")[2].getAttribute("number");
 		var comments = post.querySelectorAll("faceplate-number")[3].getAttribute("number");
 
@@ -23,7 +22,7 @@ module.exports = function (text)
 			time: time,
 			title: cleanTitle(title.innerText),
 			url: url,
-			image: image,
+			image: (image) ? image.getAttribute("src") : null,
 			upvotes: parseInt(upvotes),
 			comments: parseInt(comments)
 		});

@@ -5,7 +5,7 @@ module.exports = function (text)
 	var output = [];
 
 	const root = parse(text);
-	console.log(root)
+
 	var subreddits = root.querySelectorAll("[noun=subreddit]");
 	for (var subreddit of subreddits)
 	{
