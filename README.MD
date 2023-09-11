@@ -40,3 +40,7 @@ Parameters:
   limit: The amount of pages to search, each page has 25 records
   sort: How will the data be fetched (relevance, hot, top, new, comments)
 ```
+Purpose: Fetch Subreddit informations
+```
+GET: /r/*/
+```
